@@ -116,15 +116,24 @@ function setFormValues(settings) {
   const groupElement = document.getElementById("input-group");
   if (groupElement && settings.group.trim() !== "") {
     groupElement.value = settings.group;
+    groupElement.dispatchEvent(new Event("input", { bubbles: true }));
   }
   // Set the Artifact ID
   const artifactElement = document.getElementById("input-artifact");
   if (artifactElement && settings.artifact.trim() !== "") {
     artifactElement.value = settings.artifact;
+    artifactElement.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+
+  const nameElement = document.getElementById("input-name");
+  if (nameElement && settings.artifact.trim() !== "") {
+    nameElement.value = settings.artifact;
+    nameElement.dispatchEvent(new Event("input", { bubbles: true }));
   }
 
   const packageNameElement = document.getElementById("input-packageName");
   if (packageNameElement && settings.package?.trim() !== "") {
+    packageNameElement.click();
     packageNameElement.value = settings.package;
   }
 }

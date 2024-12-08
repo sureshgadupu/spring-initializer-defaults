@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Spring Initializr Defaults",
+  "version": "1.0",
+  "description": "Customize default values on start.spring.io",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "tabs",
+    "commands"
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "host_permissions": [
+    "https://start.spring.io/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "commands": {
+    "apply-settings": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Z",
+        "mac": "Command+Shift+Z"
+      },
+      "description": "Execute code"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://start.spring.io/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}

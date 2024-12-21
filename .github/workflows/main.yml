@@ -14,10 +14,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create ZIP File
-        run: zip -r spring-initializer-defaults.zip . -x '*.git*'
+        run: zip -r spring-initializer-defaults.zip . -x '.git/*' '.github/*'
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: spring-initializer-defaults.zip
+          name: spring-initializer-defaults
           path: spring-initializer-defaults.zip

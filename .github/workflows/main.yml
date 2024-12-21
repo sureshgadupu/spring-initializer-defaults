@@ -13,16 +13,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Create ZIP File
-        run: |
-          ls
-          # Change to repository directory
-          cd $GITHUB_WORKSPACE/spring-initializer-defaults
-          ls
-          # Create zip with contents directly (no parent directory)
-          zip -r spring-initializer-defaults.zip . -x '.git/*' '.github/*'
-          # Move zip file back to workspace
-          mv spring-initializer-defaults.zip ../../.
+
+      - name:  List files in the repository
+        run: ls ${{ github.workspace }}
+
+  
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

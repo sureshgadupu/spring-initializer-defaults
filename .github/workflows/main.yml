@@ -1,0 +1,23 @@
+name: Create ZIP File
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  zip-repository:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create ZIP File
+        run: zip -r spring-initializer-defaults.zip . -x '*.git*'
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-initializer-defaults.zip
+          path: spring-initializer-defaults.zip

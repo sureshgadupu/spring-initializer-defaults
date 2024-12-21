@@ -15,12 +15,14 @@ jobs:
 
       - name: Create ZIP File
         run: |
+          ls
           # Change to repository directory
           cd $GITHUB_WORKSPACE/spring-initializer-defaults
+          ls
           # Create zip with contents directly (no parent directory)
           zip -r spring-initializer-defaults.zip . -x '.git/*' '.github/*'
           # Move zip file back to workspace
-          mv ../spring-initializer-defaults.zip .
+          mv spring-initializer-defaults.zip ../../.
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

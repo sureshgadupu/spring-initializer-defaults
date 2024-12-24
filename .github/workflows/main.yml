@@ -8,19 +8,20 @@ on:
 jobs:
   zip-repository:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Remove .git directory
+        run: |
+          rm -rf .git
+          rm -rf .github
 
-      - name:  List files in the repository
-        run: ls ${{ github.workspace }}
-
-  
-
-      - name: Upload Artifact
+      - name: Upload repository contents
         uses: actions/upload-artifact@v4
         with:
-          name: spring-initializer-defaults.zip
-          path: spring-initializer-defaults.zip
+          name: repository-contents
+          path: |
+            *
+            .*

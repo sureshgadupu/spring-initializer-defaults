@@ -1,0 +1,52 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger on version tags
+
+# Add permissions block at workflow level
+permissions:
+  contents: write
+  packages: write
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Remove development files
+        run: |
+          rm -rf .git
+          rm -rf .github
+          
+      - name: Create ZIP file
+        run: zip -r spring-initializer-defaults-v${{ steps.get_version.outputs.VERSION }}.zip . -x "*.git*" "*.github*"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ steps.get_version.outputs.VERSION }}
+          draft: true
+          prerelease: true
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./spring-initializer-defaults-v${{ steps.get_version.outputs.VERSION }}.zip
+          asset_name: spring-initializer-defaults-v${{ steps.get_version.outputs.VERSION }}.zip
+          asset_content_type: application/zip

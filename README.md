@@ -1,7 +1,15 @@
 # Spring Initializer Defaults Chrome Extension
 
-This Chrome extension customizes the default values on the [Spring Initializer](https://start.spring.io) website.
-When you click the extension icon, it opens a popup which let's you fill the default settings and store them in your browser local storage by clicking on the **Save** button.You can apply the settings by clicking on **Apply** button.
-You can also use the keyboard shortcut `Ctrl+Shift+Z` (`Command+Shift+Z` on Mac) to apply the settings.
+Streamline Your Spring Boot Project Creation with Custom Defaults!
 
-If you are frequest visitor to [Spring Initializer](https://start.spring.io) website, you can use this extension to customize the default settings.
+This Chrome extension enhances your experience on Spring Initializr (start.spring.io) by letting you save and instantly apply your preferred project settings.
+
+Key Features:
+- Save your commonly used Spring Boot configurations with a single click
+- Apply saved settings instantly via the extension popup or keyboard shortcuts
+- Quick keyboard access: Use Ctrl+Shift+Z (Command+Shift+Z on Mac) to apply settings
+- Persistent storage: Your preferences are safely stored in your browser
+
+Perfect for developers who frequently create Spring Boot projects and want to skip the repetitive task of selecting the same dependencies, version, and build settings every time.
+
+Save time and maintain consistency across your Spring Boot projects by having your preferred configuration just one click away!

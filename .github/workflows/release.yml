@@ -3,17 +3,17 @@ name: Create Release
 on:
   push:
     tags:
-      - 'v*' # Trigger on version tags
+      - "v*" # Trigger on version tags
 
 # Add permissions block at workflow level
 permissions:
   contents: write
   packages: write
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,9 +26,9 @@ jobs:
         run: |
           rm -rf .git
           rm -rf .github
-          
+
       - name: Create ZIP file
-        run: zip -r spring-initializer-defaults-v${{ steps.get_version.outputs.VERSION }}.zip . -x "*.git*" "*.github*"
+        run: zip -r spring-initializer-defaults-v${{ steps.get_version.outputs.VERSION }}.zip * -x ".git/*" ".github/*" "*.git" ".gitignore"
 
       - name: Create Release
         id: create_release
